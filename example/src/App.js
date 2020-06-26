@@ -1,10 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-import { ExampleComponent } from 'a11y-components'
-import 'a11y-components/dist/index.css'
+import { Button } from 'a11y-components';
+import 'a11y-components/dist/index.css';
 
-const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
-}
+const App = () => (
+  <Button
+    onClick={() => {
+      console.log('hello!');
+    }}
+  >
+    Click me!
+  </Button>
+);
 
-export default App
+export default App;

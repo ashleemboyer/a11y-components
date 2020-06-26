@@ -15,7 +15,7 @@ npm install --save a11y-components
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'a11y-components'
+import { MyComponent } from 'a11y-components'
 import 'a11y-components/dist/index.css'
 
 class Example extends Component {

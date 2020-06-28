@@ -1,20 +1,19 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ children, onClick }) => (
-  <button onClick={onClick}>{children}</button>
-);
+const Button = forwardRef((props, ref) => {
+  const passableProps = {
+    ...props,
+    ref
+  };
+
+  delete passableProps.children;
+
+  return <button {...passableProps}>{props.children}</button>;
+});
 
 Button.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-  onClick: PropTypes.func
-};
-
-Button.defaultProps = {
-  onClick: () => {}
+  children: PropTypes.node.isRequired
 };
 
 export default Button;

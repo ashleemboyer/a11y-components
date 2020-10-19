@@ -18,6 +18,7 @@ const Input = forwardRef((props, ref) => {
 });
 
 Input.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string
 };
 

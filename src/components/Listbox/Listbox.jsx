@@ -24,6 +24,9 @@ const Listbox = forwardRef((props, ref) => {
   const [indexOfSelectedOption, setIndexOfSelectedOption] = useState(0);
   const [listboxWasBlurred, setListboxWasBlurred] = useState(false);
 
+  const label = props && props.label ? props.label : '';
+  const options = props && props.options ? props.options : [];
+
   useEffect(() => {
     if (isOpen && listboxRef.current) {
       listboxRef.current.focus();
@@ -31,24 +34,24 @@ const Listbox = forwardRef((props, ref) => {
   }, [listboxRef, isOpen]);
 
   const selectedOption =
-    props.options.find((option) => {
+    options.find((option) => {
       if (props.value) {
         return option.id === props.value;
       } else {
-        return option.id === props.options[indexOfSelectedOption].id;
+        return option.id === options[indexOfSelectedOption].id;
       }
     }) || {};
 
   const setOption = (indexOfOption) => {
     setIndexOfSelectedOption(indexOfOption);
-    props.onChange(props.options[indexOfOption].id);
+    props.onChange(options[indexOfOption].id);
   };
 
   const focusPreviousOption = () => {
     let newIndex;
 
     if (indexOfSelectedOption === 0) {
-      newIndex = props.options.length - 1;
+      newIndex = options.length - 1;
     } else {
       newIndex = indexOfSelectedOption - 1;
     }
@@ -59,7 +62,7 @@ const Listbox = forwardRef((props, ref) => {
   const focusNextOption = () => {
     let newIndex;
 
-    if (indexOfSelectedOption === props.options.length - 1) {
+    if (indexOfSelectedOption === options.length - 1) {
       newIndex = 0;
     } else {
       newIndex = indexOfSelectedOption + 1;
@@ -91,7 +94,7 @@ const Listbox = forwardRef((props, ref) => {
 
   return (
     <div className={styles.Listbox}>
-      <label id={listboxLabel}>{props.label}</label>
+      <label id={listboxLabel}>{label}</label>
       <button
         ref={buttonRef}
         aria-labelledby={listboxLabel}
@@ -122,7 +125,7 @@ const Listbox = forwardRef((props, ref) => {
             setIsOpen(false);
           }}
         >
-          {props.options.map((option, index) => (
+          {options.map((option, index) => (
             <li
               id={option.id}
               key={option.id}

@@ -1,6 +1,5 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-
+import { buildPropTypes } from '../../helpers/buildPropTypes';
 import styles from './Listbox.module.scss';
 
 const ARROW_UP = 38;
@@ -31,13 +30,14 @@ const Listbox = forwardRef((props, ref) => {
     }
   }, [listboxRef, isOpen]);
 
-  const selectedOption = props.options.find((option) => {
-    if (props.value) {
-      return option.id === props.value;
-    } else {
-      return option.id === props.options[indexOfSelectedOption].id;
-    }
-  });
+  const selectedOption =
+    props.options.find((option) => {
+      if (props.value) {
+        return option.id === props.value;
+      } else {
+        return option.id === props.options[indexOfSelectedOption].id;
+      }
+    }) || {};
 
   const setOption = (indexOfOption) => {
     setIndexOfSelectedOption(indexOfOption);
@@ -142,17 +142,34 @@ const Listbox = forwardRef((props, ref) => {
   );
 });
 
-Listbox.propTypes = {
-  label: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
-    })
-  ).isRequired,
-  value: PropTypes.string
+Listbox.publicPropTypes = {
+  label: {
+    type: 'string',
+    isRequired: true
+  },
+  onChange: {
+    type: 'func'
+  },
+  options: {
+    type: 'arrayOf',
+    isRequired: true,
+    shape: {
+      id: {
+        type: 'string',
+        isRequired: true
+      },
+      label: {
+        type: 'string',
+        isRequired: true
+      }
+    }
+  },
+  value: {
+    type: 'string'
+  }
 };
+
+Listbox.propTypes = buildPropTypes(Listbox.publicPropTypes);
 
 Listbox.defaultProps = {
   onChange: () => {},

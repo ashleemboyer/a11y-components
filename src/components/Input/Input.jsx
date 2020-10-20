@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
+import { buildPropTypes } from '../../helpers/buildPropTypes';
 import styles from './Input.module.scss';
 
 const Input = forwardRef((props, ref) => {
@@ -27,17 +27,6 @@ Input.publicPropTypes = {
   }
 };
 
-Input.propTypes = Object.entries(Input.publicPropTypes).reduce(
-  (accumulator, [key, value]) => {
-    accumulator[key] = PropTypes[value.type];
-
-    if (value.isRequired) {
-      accumulator[key] = accumulator[key].isRequired;
-    }
-
-    return accumulator;
-  },
-  {}
-);
+Input.propTypes = buildPropTypes(Input.publicPropTypes);
 
 export default Input;

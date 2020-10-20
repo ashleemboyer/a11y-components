@@ -18,9 +18,26 @@ const Input = forwardRef((props, ref) => {
   );
 });
 
-Input.propTypes = {
-  id: PropTypes.string,
-  label: PropTypes.string
+Input.publicPropTypes = {
+  id: {
+    type: 'string'
+  },
+  label: {
+    type: 'string'
+  }
 };
+
+Input.propTypes = Object.entries(Input.publicPropTypes).reduce(
+  (accumulator, [key, value]) => {
+    accumulator[key] = PropTypes[value.type];
+
+    if (value.isRequired) {
+      accumulator[key] = accumulator[key].isRequired;
+    }
+
+    return accumulator;
+  },
+  {}
+);
 
 export default Input;

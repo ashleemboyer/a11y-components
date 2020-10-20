@@ -1,3 +1,3 @@
 import Listbox from './Listbox';
 
-export { Listbox };
+export { Listbox as default };

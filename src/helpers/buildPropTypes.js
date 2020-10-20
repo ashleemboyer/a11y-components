@@ -5,7 +5,9 @@ export const buildPropTypes = (propTypes) => {
     accumulator[key] = PropTypes[value.type];
 
     if (value.shape) {
-      accumulator[key] = accumulator[key](buildPropTypes(value.shape));
+      accumulator[key] = accumulator[key](
+        PropTypes.shape(buildPropTypes(value.shape))
+      );
     }
 
     if (value.isRequired) {

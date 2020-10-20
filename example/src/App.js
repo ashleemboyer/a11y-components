@@ -1,9 +1,15 @@
 import React from 'react';
-import { Listbox } from 'a11y-components';
+import { Button, Input, Listbox } from 'a11y-components';
 import 'a11y-components/dist/index.css';
 
 const App = () => {
-  return <Listbox label='Test' options={[]} />;
+  return (
+    <>
+      <Button />
+      <Input />
+      <Listbox />
+    </>
+  );
 };
 
 export default App;

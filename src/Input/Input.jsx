@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
+import styles from './Input.module.scss';
 
 const Input = forwardRef((props, ref) => {
   const passableProps = {
@@ -10,7 +11,7 @@ const Input = forwardRef((props, ref) => {
   delete passableProps.label;
 
   return (
-    <div>
+    <div className={styles.Input}>
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
       <input {...passableProps} />
     </div>

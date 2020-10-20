@@ -2,7 +2,7 @@
 
 > Made with create-react-library
 
-[![NPM](https://img.shields.io/npm/v/a11y-components.svg)](https://www.npmjs.com/package/@amb-codes-crafts/a11y-components) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![npm version](https://badge.fury.io/js/%40amb-codes-crafts%2Fa11y-components.svg)](https://badge.fury.io/js/%40amb-codes-crafts%2Fa11y-components)
 
 ## Install
 

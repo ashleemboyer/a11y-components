@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import { Listbox } from '.';
+import Listbox from '.';
 
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;

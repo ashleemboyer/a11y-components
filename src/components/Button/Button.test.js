@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Button } from '.';
+import Button from '.';
 
 describe('<Button />', () => {
   it('it renders its children successfully', () => {

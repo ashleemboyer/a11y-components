@@ -39,6 +39,11 @@ const Listbox = forwardRef((props, ref) => {
     }
   });
 
+  const setOption = (indexOfOption) => {
+    setIndexOfSelectedOption(indexOfOption);
+    props.onChange(props.options[indexOfOption].id);
+  };
+
   const focusPreviousOption = () => {
     let newIndex;
 
@@ -48,7 +53,7 @@ const Listbox = forwardRef((props, ref) => {
       newIndex = indexOfSelectedOption - 1;
     }
 
-    setIndexOfSelectedOption(newIndex);
+    setOption(newIndex);
   };
 
   const focusNextOption = () => {
@@ -60,7 +65,7 @@ const Listbox = forwardRef((props, ref) => {
       newIndex = indexOfSelectedOption + 1;
     }
 
-    setIndexOfSelectedOption(newIndex);
+    setOption(newIndex);
   };
 
   const handleButtonKeyDown = (e) => {
@@ -124,9 +129,8 @@ const Listbox = forwardRef((props, ref) => {
               role='option'
               aria-selected={option.id === selectedOption.id}
               onClick={() => {
-                setIndexOfSelectedOption(index);
+                setOption(index);
                 setIsOpen(false);
-                props.onChange(option.id);
               }}
             >
               {option.label}

@@ -94,9 +94,7 @@ describe('<Listbox />', () => {
         const wrapper = shallow(
           <Listbox label={testLabel} options={testOptions} />
         );
-        wrapper.find('button').simulate('keydown', {
-          keyCode: ARROW_DOWN
-        });
+        wrapper.find('button').simulate('keydown', { keyCode: ARROW_DOWN });
 
         expect(wrapper.find('ul')).toHaveLength(1);
       });
@@ -105,9 +103,7 @@ describe('<Listbox />', () => {
         const wrapper = shallow(
           <Listbox label={testLabel} options={testOptions} />
         );
-        wrapper.find('button').simulate('keydown', {
-          keyCode: ARROW_UP
-        });
+        wrapper.find('button').simulate('keydown', { keyCode: ARROW_UP });
 
         expect(wrapper.find('ul')).toHaveLength(1);
       });
@@ -119,9 +115,7 @@ describe('<Listbox />', () => {
           <Listbox label={testLabel} options={testOptions} />
         );
         wrapper.find('button').simulate('click');
-        wrapper.find('ul').simulate('keydown', {
-          keyCode: ESCAPE
-        });
+        wrapper.find('ul').simulate('keydown', { keyCode: ESCAPE });
 
         const button = wrapper.find('button');
         expect(button.prop('aria-expanded')).toBeFalsy();
@@ -133,9 +127,7 @@ describe('<Listbox />', () => {
           <Listbox label={testLabel} options={testOptions} />
         );
         wrapper.find('button').simulate('click');
-        wrapper.find('ul').simulate('keydown', {
-          keyCode: ENTER
-        });
+        wrapper.find('ul').simulate('keydown', { keyCode: ENTER });
 
         const button = wrapper.find('button');
         expect(button.prop('aria-expanded')).toBeFalsy();
@@ -145,6 +137,53 @@ describe('<Listbox />', () => {
   });
 
   describe('listbox onKeyDown', () => {
-    // todo
+    describe('when key is ARROW DOWN', () => {
+      let wrapper;
+      beforeEach(() => {
+        wrapper = shallow(<Listbox label={testLabel} options={testOptions} />);
+        wrapper.find('button').simulate('click');
+      });
+
+      it('selects the first option if current option is the last', () => {
+        wrapper.find('li').last().simulate('click');
+        wrapper.find('button').simulate('click');
+        wrapper.find('ul').simulate('keydown', { keyCode: ARROW_DOWN });
+
+        expect(wrapper.find('li').first().prop('aria-selected')).toBeTruthy();
+      });
+
+      it('selects next option if the current option is not the last', () => {
+        wrapper.find('ul').simulate('keydown', { keyCode: ARROW_DOWN });
+
+        expect(wrapper.find('li').at(1).prop('aria-selected')).toBeTruthy();
+      });
+    });
+
+    describe('when key is ARROW UP', () => {
+      let wrapper;
+      beforeEach(() => {
+        wrapper = shallow(<Listbox label={testLabel} options={testOptions} />);
+        wrapper.find('button').simulate('click');
+      });
+
+      it('selects last option if current option is the first', () => {
+        wrapper.find('ul').simulate('keydown', { keyCode: ARROW_UP });
+
+        expect(wrapper.find('li').last().prop('aria-selected')).toBeTruthy();
+      });
+
+      it('selects previous option if current option is not the first', () => {
+        wrapper.find('li').last().simulate('click');
+        wrapper.find('button').simulate('click');
+        wrapper.find('ul').simulate('keydown', { keyCode: ARROW_UP });
+
+        expect(
+          wrapper
+            .find('li')
+            .at(testOptions.length - 2)
+            .prop('aria-selected')
+        ).toBeTruthy();
+      });
+    });
   });
 });

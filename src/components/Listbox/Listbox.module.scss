@@ -1,6 +1,8 @@
 $option-height: 48;
 
 .Listbox {
+  position: relative;
+
   label {
     display: block;
     font-weight: bold;
@@ -30,8 +32,11 @@ $option-height: 48;
   }
 
   ul {
+    width: 100%;
     max-height: #{5 * $option-height}px;
     overflow-y: scroll;
+    position: absolute;
+    z-index: 100;
     border: 1px solid black;
     border-top-width: 0;
     list-style: none;

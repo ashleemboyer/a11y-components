@@ -9,9 +9,10 @@ const Input = forwardRef((props, ref) => {
   };
 
   delete passableProps.label;
+  delete passableProps.style;
 
   return (
-    <div className={styles.Input}>
+    <div className={styles.Input} style={props.style}>
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
       <input {...passableProps} />
     </div>
@@ -24,6 +25,9 @@ Input.publicPropTypes = {
   },
   label: {
     type: 'string'
+  },
+  style: {
+    type: 'shape'
   }
 };
 

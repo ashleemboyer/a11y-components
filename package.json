@@ -11,7 +11,8 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest --config jest.config.json",
-    "build": "webpack"
+    "build": "webpack",
+    "storybook": "start-storybook"
   },
   "dependencies": {
     "jest": "^26.6.3",
@@ -23,6 +24,8 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.10",
     "@babel/preset-react": "^7.12.10",
+    "@storybook/addon-knobs": "^6.1.11",
+    "@storybook/react": "^6.1.11",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "babel-plugin-module-name-mapper": "^1.2.0",

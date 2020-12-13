@@ -2,5 +2,15 @@
   "presets": [
     "@babel/preset-react",
     ["@babel/preset-env", { "targets": { "node": "current" } }]
+  ],
+  "plugins": [
+    [
+      "module-name-mapper",
+      {
+        "moduleNameMapper": {
+          "^.+\\.(css|less|scss)$": "babel-jest"
+        }
+      }
+    ]
   ]
 }

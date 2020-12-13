@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Input } from '.';
 
 describe('<Input />', () => {
-  it('renders an <input>', () => {
+  it('renders an <input> element successfully', () => {
     const wrapper = shallow(<Input />);
     expect(wrapper.find('input')).toHaveLength(1);
   });

@@ -2,12 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Button } from '.';
 
-const setup = () => shallow(<Button>test</Button>);
-
 describe('<Button />', () => {
-  it('renders a <button> with the correct text', () => {
-    const button = setup().find('button');
-    expect(button).toHaveLength(1);
-    expect(button.text()).toBe('test');
+  it('it renders its children successfully', () => {
+    const wrapper = shallow(<Button>hello</Button>);
+    expect(wrapper.find('button').text()).toBe('hello');
   });
 });

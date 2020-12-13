@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
-import Listbox from '.';
+import { Listbox } from '.';
 
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
@@ -13,13 +12,13 @@ const testOptions = [
   { id: 'blanche_devereaux', label: 'Blanche Devereaux' },
   { id: 'rose_nylund', label: 'Rose Nylund' },
   { id: 'sophia_petrillo', label: 'Sophia Petrillo' },
-  { id: 'dorothy_zbornak', label: 'Dorothy Zbornak' }
+  { id: 'dorothy_zbornak', label: 'Dorothy Zbornak' },
 ];
 
 describe('<Listbox />', () => {
   it('renders successfully with the correct aria attributes', () => {
     const wrapper = shallow(
-      <Listbox label={testLabel} options={testOptions} />
+      <Listbox label={testLabel} options={testOptions} />,
     );
 
     const label = wrapper.find('label');
@@ -37,7 +36,7 @@ describe('<Listbox />', () => {
   describe('button onClick', () => {
     it('expands and has the correct aria attributes', () => {
       const wrapper = shallow(
-        <Listbox label={testLabel} options={testOptions} />
+        <Listbox label={testLabel} options={testOptions} />,
       );
       let button = wrapper.find('button');
       button.simulate('click');
@@ -60,7 +59,7 @@ describe('<Listbox />', () => {
 
     it('collapses and has the correct aria attributes', () => {
       const wrapper = shallow(
-        <Listbox label={testLabel} options={testOptions} />
+        <Listbox label={testLabel} options={testOptions} />,
       );
       wrapper.find('button').simulate('click');
       wrapper.find('button').simulate('click');
@@ -74,7 +73,7 @@ describe('<Listbox />', () => {
   describe('listbox onClick', () => {
     it('selects the option that was clicked and collapses', () => {
       const wrapper = shallow(
-        <Listbox label={testLabel} options={testOptions} />
+        <Listbox label={testLabel} options={testOptions} />,
       );
       wrapper.find('button').simulate('click');
 
@@ -92,7 +91,7 @@ describe('<Listbox />', () => {
     describe('when collapsed', () => {
       it('expands on ARROW_DOWN', () => {
         const wrapper = shallow(
-          <Listbox label={testLabel} options={testOptions} />
+          <Listbox label={testLabel} options={testOptions} />,
         );
         wrapper.find('button').simulate('keydown', { keyCode: ARROW_DOWN });
 
@@ -101,7 +100,7 @@ describe('<Listbox />', () => {
 
       it('expands on ARROW_UP', () => {
         const wrapper = shallow(
-          <Listbox label={testLabel} options={testOptions} />
+          <Listbox label={testLabel} options={testOptions} />,
         );
         wrapper.find('button').simulate('keydown', { keyCode: ARROW_UP });
 
@@ -112,7 +111,7 @@ describe('<Listbox />', () => {
     describe('when expanded', () => {
       it('collapses on ESCAPE', () => {
         const wrapper = mount(
-          <Listbox label={testLabel} options={testOptions} />
+          <Listbox label={testLabel} options={testOptions} />,
         );
         wrapper.find('button').simulate('click');
         wrapper.find('ul').simulate('keydown', { keyCode: ESCAPE });
@@ -124,7 +123,7 @@ describe('<Listbox />', () => {
 
       it('collapses on ENTER', () => {
         const wrapper = shallow(
-          <Listbox label={testLabel} options={testOptions} />
+          <Listbox label={testLabel} options={testOptions} />,
         );
         wrapper.find('button').simulate('click');
         wrapper.find('ul').simulate('keydown', { keyCode: ENTER });
@@ -181,7 +180,7 @@ describe('<Listbox />', () => {
           wrapper
             .find('li')
             .at(testOptions.length - 2)
-            .prop('aria-selected')
+            .prop('aria-selected'),
         ).toBeTruthy();
       });
     });

@@ -1,5 +1,5 @@
-export { default as Button } from './Button';
+export { Button } from './Button';
 
-export { default as Input } from './Input';
+export { Input } from './Input';
 
-export { default as Listbox } from './Listbox';
+export { Listbox } from './Listbox';

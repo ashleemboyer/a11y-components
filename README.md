@@ -1,7 +1,5 @@
 # a11y-components
 
-> Made with create-react-library
-
 [![npm version](https://badge.fury.io/js/%40amb-codes-crafts%2Fa11y-components.svg)](https://badge.fury.io/js/%40amb-codes-crafts%2Fa11y-components)
 
 ## Install

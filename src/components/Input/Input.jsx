@@ -2,10 +2,10 @@ import React, { forwardRef } from 'react';
 import { buildPropTypes } from '../../helpers/buildPropTypes';
 import styles from './Input.module.scss';
 
-const Input = forwardRef((props, ref) => {
+export const Input = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
-    ref
+    ref,
   };
 
   delete passableProps.label;
@@ -21,16 +21,14 @@ const Input = forwardRef((props, ref) => {
 
 Input.publicPropTypes = {
   id: {
-    type: 'string'
+    type: 'string',
   },
   label: {
-    type: 'string'
+    type: 'string',
   },
   style: {
-    type: 'shape'
-  }
+    type: 'shape',
+  },
 };
 
 Input.propTypes = buildPropTypes(Input.publicPropTypes);
-
-export default Input;

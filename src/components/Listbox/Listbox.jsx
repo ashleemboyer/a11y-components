@@ -7,10 +7,10 @@ const ARROW_DOWN = 40;
 const ESCAPE = 27;
 const ENTER = 13;
 
-const Listbox = forwardRef((props, ref) => {
+export const Listbox = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
-    ref
+    ref,
   };
   delete passableProps.label;
   delete passableProps.onChange;
@@ -98,7 +98,7 @@ const Listbox = forwardRef((props, ref) => {
       <button
         ref={buttonRef}
         aria-labelledby={listboxLabel}
-        aria-haspopup='listbox'
+        aria-haspopup="listbox"
         aria-expanded={isOpen}
         onClick={() => {
           // Don't reopen the listbox if it was blurred then clicked
@@ -117,7 +117,7 @@ const Listbox = forwardRef((props, ref) => {
         <ul
           ref={listboxRef}
           tabIndex={isOpen ? '0' : '-1'}
-          role='listbox'
+          role="listbox"
           aria-activedescendant={selectedOption.id}
           onKeyDown={handleListboxKeyDown}
           onBlur={() => {
@@ -129,7 +129,7 @@ const Listbox = forwardRef((props, ref) => {
             <li
               id={option.id}
               key={option.id}
-              role='option'
+              role="option"
               aria-selected={option.id === selectedOption.id}
               onClick={() => {
                 setOption(index);
@@ -148,10 +148,10 @@ const Listbox = forwardRef((props, ref) => {
 Listbox.publicPropTypes = {
   label: {
     type: 'string',
-    isRequired: true
+    isRequired: true,
   },
   onChange: {
-    type: 'func'
+    type: 'func',
   },
   options: {
     type: 'arrayOf',
@@ -159,24 +159,22 @@ Listbox.publicPropTypes = {
     shape: {
       id: {
         type: 'string',
-        isRequired: true
+        isRequired: true,
       },
       label: {
         type: 'string',
-        isRequired: true
-      }
-    }
+        isRequired: true,
+      },
+    },
   },
   value: {
-    type: 'string'
-  }
+    type: 'string',
+  },
 };
 
 Listbox.propTypes = buildPropTypes(Listbox.publicPropTypes);
 
 Listbox.defaultProps = {
   onChange: () => {},
-  value: undefined
+  value: undefined,
 };
-
-export default Listbox;

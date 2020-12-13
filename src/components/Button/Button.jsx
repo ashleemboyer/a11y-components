@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 import { buildPropTypes } from '../../helpers/buildPropTypes';
 
-const Button = forwardRef((props, ref) => {
+export const Button = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
-    ref
+    ref,
   };
 
   delete passableProps.children;
@@ -15,10 +15,8 @@ const Button = forwardRef((props, ref) => {
 Button.publicPropTypes = {
   children: {
     type: 'node',
-    isRequired: true
-  }
+    isRequired: true,
+  },
 };
 
 Button.propTypes = buildPropTypes(Button.publicPropTypes);
-
-export default Button;

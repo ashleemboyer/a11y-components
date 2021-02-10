@@ -1,6 +1,6 @@
 {
-  "name": "@amb-codes-crafts/a11y-components",
-  "version": "3.0.0",
+  "name": "a11y-components",
+  "version": "0.2.0",
   "description": "A library of accessible React components.",
   "author": "ashleemboyer",
   "license": "MIT",
@@ -9,33 +9,52 @@
     "url": "git+https://github.com/ashleemboyer/a11y-components.git"
   },
   "main": "dist/index.js",
-  "scripts": {
-    "test": "jest --config jest.config.json",
-    "build": "webpack"
-  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
-    "jest": "^26.6.3",
-    "prop-types": "^15.7.2",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "@babel/cli": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "cross-env": "^7.0.3"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "clean": "rimraf dist",
+    "compile": "yarn clean && cross-env NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore test.js,stories.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.10",
-    "@babel/preset-react": "^7.12.10",
-    "babel-jest": "^26.6.3",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-module-name-mapper": "^1.2.0",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^5.0.1",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.5",
-    "node-sass": "^5.0.0",
-    "path": "^0.12.7",
-    "sass-loader": "^10.1.0",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.10.1",
-    "webpack-cli": "^4.2.0",
-    "webpack-node-externals": "^2.5.2"
+    "@storybook/addon-actions": "^6.1.17",
+    "@storybook/addon-essentials": "^6.1.17",
+    "@storybook/addon-links": "^6.1.17",
+    "@storybook/node-logger": "^6.1.17",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.1.17",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.2"
   }
 }

@@ -1,13 +1,11 @@
 import React, { forwardRef, useState, useEffect } from 'react';
-import { buildPropTypes } from '../../helpers/buildPropTypes';
-import styles from './Listbox.module.scss';
 
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
 const ESCAPE = 27;
 const ENTER = 13;
 
-export const Listbox = forwardRef((props, ref) => {
+const Listbox = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
     ref,
@@ -93,7 +91,7 @@ export const Listbox = forwardRef((props, ref) => {
   const listboxLabel = `listboxLabel-${new Date().getTime()})`;
 
   return (
-    <div className={styles.Listbox}>
+    <div>
       <label id={listboxLabel}>{label}</label>
       <button
         ref={buttonRef}
@@ -145,36 +143,4 @@ export const Listbox = forwardRef((props, ref) => {
   );
 });
 
-Listbox.publicPropTypes = {
-  label: {
-    type: 'string',
-    isRequired: true,
-  },
-  onChange: {
-    type: 'func',
-  },
-  options: {
-    type: 'arrayOf',
-    isRequired: true,
-    shape: {
-      id: {
-        type: 'string',
-        isRequired: true,
-      },
-      label: {
-        type: 'string',
-        isRequired: true,
-      },
-    },
-  },
-  value: {
-    type: 'string',
-  },
-};
-
-Listbox.propTypes = buildPropTypes(Listbox.publicPropTypes);
-
-Listbox.defaultProps = {
-  onChange: () => {},
-  value: undefined,
-};
+export default Listbox;

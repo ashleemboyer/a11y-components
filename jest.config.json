@@ -1,4 +1,0 @@
-{
-  "setupFilesAfterEnv": ["./src/setupTests.js"],
-  "verbose": true
-}

@@ -1,5 +1,5 @@
-export { Button } from './Button';
+import Button from './Button/Button';
+import Input from './Input/Input';
+import Listbox from './Listbox/Listbox';
 
-export { Input } from './Input';
-
-export { Listbox } from './Listbox';
+export { Button, Input, Listbox };

@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react';
-import { buildPropTypes } from '../../helpers/buildPropTypes';
-import styles from './Input.module.scss';
 
-export const Input = forwardRef((props, ref) => {
+const Input = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
     ref,
@@ -12,23 +10,11 @@ export const Input = forwardRef((props, ref) => {
   delete passableProps.style;
 
   return (
-    <div className={styles.Input} style={props.style}>
+    <div style={props.style}>
       {props.label && <label htmlFor={props.id}>{props.label}</label>}
       <input {...passableProps} />
     </div>
   );
 });
 
-Input.publicPropTypes = {
-  id: {
-    type: 'string',
-  },
-  label: {
-    type: 'string',
-  },
-  style: {
-    type: 'shape',
-  },
-};
-
-Input.propTypes = buildPropTypes(Input.publicPropTypes);
+export default Input;

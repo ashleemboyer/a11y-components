@@ -11,15 +11,18 @@ npm i a11y-components
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
+import React from 'react';
+import { Button } from 'a11y-component';
 
-import { MyComponent } from 'a11y-component';
-
-class Example extends Component {
-  render() {
-    return <MyComponent />;
-  }
-}
+const Example = () => (
+  <Button
+    onClick={() => {
+      alert('Hello, world!');
+    }}
+  >
+    Click me!
+  </Button>
+);
 ```
 
 ## License

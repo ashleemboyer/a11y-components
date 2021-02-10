@@ -23,10 +23,10 @@
     "cross-env": "^7.0.3"
   },
   "scripts": {
-    "test": "jest --config jest.config.json",
-    "build": "webpack",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "clean": "rimraf dist",
+    "compile": "yarn clean && cross-env NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore test.js,stories.js"
   },
   "eslintConfig": {
     "extends": [

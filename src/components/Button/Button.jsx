@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-export const Button = forwardRef((props, ref) => {
+const Button = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
     ref,
@@ -10,3 +10,5 @@ export const Button = forwardRef((props, ref) => {
 
   return <button {...passableProps}>{props.children}</button>;
 });
+
+export default Button;

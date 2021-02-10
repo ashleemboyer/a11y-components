@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-export const Input = forwardRef((props, ref) => {
+const Input = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
     ref,
@@ -16,3 +16,5 @@ export const Input = forwardRef((props, ref) => {
     </div>
   );
 });
+
+export default Input;

@@ -5,7 +5,7 @@ const ARROW_DOWN = 40;
 const ESCAPE = 27;
 const ENTER = 13;
 
-export const Listbox = forwardRef((props, ref) => {
+const Listbox = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
     ref,
@@ -142,3 +142,5 @@ export const Listbox = forwardRef((props, ref) => {
     </div>
   );
 });
+
+export default Listbox;

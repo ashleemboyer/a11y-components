@@ -1,5 +1,6 @@
 import React from 'react';
 import Listbox from './Listbox';
+import './Listbox.css';
 
 export default {
   title: 'Listbox',

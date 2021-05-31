@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useState } from 'react';
+import styles from './Listbox.module.scss';
 
 const ARROW_UP = 'ArrowUp';
 const ARROW_DOWN = 'ArrowDown';
@@ -119,7 +120,7 @@ const Listbox = forwardRef((props, ref) => {
   const listboxLabel = `listboxLabel-${new Date().getTime()})`;
 
   return (
-    <div className={containerClassName} style={style}>
+    <div className={`${styles.Listbox} ${containerClassName}`} style={style}>
       {label && (
         <label className={labelClassName} id={listboxLabel}>
           {label}

@@ -16,6 +16,18 @@ const printWarnings = (componentProps) => {
 };
 
 const Listbox = forwardRef((props, ref) => {
+  printWarnings(props);
+
+  const {
+    buttonClassName,
+    containerClassName,
+    label,
+    labelClassName,
+    listItemClassName,
+    options,
+    style,
+    unorderedListClassName,
+  } = props;
   const passableProps = {
     ...props,
     ref,
@@ -28,10 +40,9 @@ const Listbox = forwardRef((props, ref) => {
   delete passableProps.listItemClassName;
   delete passableProps.onChange;
   delete passableProps.options;
+  delete passableProps.style;
   delete passableProps.unorderedListClassName;
   delete passableProps.value;
-
-  printWarnings(props);
 
   const buttonRef = React.createRef();
   const listboxRef = React.createRef();
@@ -39,9 +50,6 @@ const Listbox = forwardRef((props, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [indexOfSelectedOption, setIndexOfSelectedOption] = useState(0);
   const [listboxWasBlurred, setListboxWasBlurred] = useState(false);
-
-  const label = props && props.label ? props.label : '';
-  const options = props && props.options ? props.options : [];
 
   useEffect(() => {
     if (isOpen && listboxRef.current) {
@@ -107,18 +115,14 @@ const Listbox = forwardRef((props, ref) => {
   };
 
   const listboxLabel = `listboxLabel-${new Date().getTime()})`;
-  const {
-    buttonClassName,
-    containerClassName,
-    labelClassName,
-    listItemClassName,
-    unorderedListClassName,
-  } = props;
+
   return (
-    <div className={containerClassName}>
-      <label className={labelClassName} id={listboxLabel}>
-        {label}
-      </label>
+    <div className={containerClassName} style={style}>
+      {label && (
+        <label className={labelClassName} id={listboxLabel}>
+          {label}
+        </label>
+      )}
       <button
         aria-expanded={isOpen}
         aria-haspopup="listbox"

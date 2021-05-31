@@ -10,8 +10,8 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "arrowParens": "always",
-  "proseWrap": "always",
+  "proseWrap": "never",
   "htmlWhitespaceSensitivity": "css",
   "endOfLine": "lf",
-  "embeddedLanguageFormatting": "off"
+  "embeddedLanguageFormatting": "auto"
 }

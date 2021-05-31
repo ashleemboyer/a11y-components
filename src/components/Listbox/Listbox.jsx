@@ -5,15 +5,33 @@ const ARROW_DOWN = 40;
 const ESCAPE = 27;
 const ENTER = 13;
 
+const printWarnings = (componentProps) => {
+  const { className } = componentProps;
+
+  if (className) {
+    console.warn(
+      'The className property is ignored. Please use buttonClassName, containerClassName, labelClassName, listItemClassName, or unorderedListClassName instead.'
+    );
+  }
+};
+
 const Listbox = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
     ref,
   };
+
   delete passableProps.label;
   delete passableProps.onChange;
   delete passableProps.options;
   delete passableProps.value;
+  delete passableProps.buttonClassName;
+  delete passableProps.containerClassName;
+  delete passableProps.labelClassName;
+  delete passableProps.listItemClassName;
+  delete passableProps.unorderedListClassName;
+
+  printWarnings(props);
 
   const buttonRef = React.createRef();
   const listboxRef = React.createRef();
@@ -89,15 +107,23 @@ const Listbox = forwardRef((props, ref) => {
   };
 
   const listboxLabel = `listboxLabel-${new Date().getTime()})`;
-
+  const {
+    buttonClassName,
+    containerClassName,
+    labelClassName,
+    listItemClassName,
+    unorderedListClassName,
+  } = props;
   return (
-    <div>
-      <label id={listboxLabel}>{label}</label>
+    <div className={containerClassName}>
+      <label className={labelClassName} id={listboxLabel}>
+        {label}
+      </label>
       <button
-        ref={buttonRef}
-        aria-labelledby={listboxLabel}
-        aria-haspopup="listbox"
         aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-labelledby={listboxLabel}
+        className={buttonClassName}
         onClick={() => {
           // Don't reopen the listbox if it was blurred then clicked
           if (listboxWasBlurred) {
@@ -108,31 +134,34 @@ const Listbox = forwardRef((props, ref) => {
           setIsOpen(!isOpen);
         }}
         onKeyDown={handleButtonKeyDown}
+        ref={buttonRef}
       >
         {selectedOption.id ? selectedOption.label : 'Choose'}
       </button>
       {isOpen && (
         <ul
-          ref={listboxRef}
-          tabIndex={isOpen ? '0' : '-1'}
-          role="listbox"
           aria-activedescendant={selectedOption.id}
-          onKeyDown={handleListboxKeyDown}
+          className={unorderedListClassName}
           onBlur={() => {
             setListboxWasBlurred(true);
             setIsOpen(false);
           }}
+          onKeyDown={handleListboxKeyDown}
+          ref={listboxRef}
+          role="listbox"
+          tabIndex={isOpen ? '0' : '-1'}
         >
           {options.map((option, index) => (
             <li
+              aria-selected={option.id === selectedOption.id}
+              className={listItemClassName}
               id={option.id}
               key={option.id}
-              role="option"
-              aria-selected={option.id === selectedOption.id}
               onClick={() => {
                 setOption(index);
                 setIsOpen(false);
               }}
+              role="option"
             >
               {option.label}
             </li>

@@ -4,5 +4,5 @@ module.exports = (api) => {
   const presets = ['@babel/preset-env', '@babel/preset-react'];
   const plugins = ['macros'];
 
-  return { presets, plugins };
+  return { ignore: [/\.stories\.(js|jsx)$/], presets, plugins };
 };

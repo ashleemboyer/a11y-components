@@ -1,9 +1,9 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 
-const ARROW_UP = 38;
-const ARROW_DOWN = 40;
-const ESCAPE = 27;
-const ENTER = 13;
+const ARROW_UP = 'ArrowUp';
+const ARROW_DOWN = 'ArrowDown';
+const ESCAPE = 'Escape';
+const ENTER = 'Enter';
 
 const printWarnings = (componentProps) => {
   const { className } = componentProps;
@@ -98,19 +98,19 @@ const Listbox = forwardRef((props, ref) => {
   };
 
   const handleButtonKeyDown = (e) => {
-    if (e.keyCode === ARROW_DOWN || e.keyCode === ARROW_UP) {
+    if (e.code === ARROW_DOWN || e.code === ARROW_UP) {
       setIsOpen(true);
     }
   };
 
   const handleListboxKeyDown = (e) => {
-    if (e.keyCode === ARROW_UP) {
+    if (e.code === ARROW_UP) {
       focusPreviousOption();
-    } else if (e.keyCode === ARROW_DOWN) {
+    } else if (e.code === ARROW_DOWN) {
       focusNextOption();
-    } else if (e.keyCode === ENTER) {
+    } else if (e.code === ENTER) {
       setIsOpen(false);
-    } else if (e.keyCode === ESCAPE) {
+    } else if (e.code === ESCAPE) {
       setIsOpen(false);
       buttonRef.current.focus();
     }
@@ -119,7 +119,7 @@ const Listbox = forwardRef((props, ref) => {
   const listboxLabel = `listboxLabel-${new Date().getTime()})`;
 
   return (
-    <div className={containerClassName} style={style}>
+    <div className={`Listbox ${containerClassName}`} style={style}>
       {label && (
         <label className={labelClassName} id={listboxLabel}>
           {label}

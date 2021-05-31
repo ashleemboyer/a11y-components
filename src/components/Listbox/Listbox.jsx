@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;

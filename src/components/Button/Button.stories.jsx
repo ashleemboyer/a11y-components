@@ -1,13 +1,23 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import Button from './Button';
 
-export const text = 'Hello, Button!';
-export const actions = {
-  onClick: action('click'),
+export default {
+  title: 'Button',
+  component: Button,
+  argTypes: {
+    children: {
+      control: {
+        type: 'text',
+      },
+      defaultValue: 'Click me!',
+      description: 'Children to render inside of the button.',
+    },
+    onClick: {
+      action: 'clicked',
+    },
+  },
 };
 
-storiesOf('Button', module).add('default', () => (
-  <Button onClick={actions.onClick}>{text}</Button>
-));
+export const Basic = (props) => {
+  return <Button {...props} />;
+};

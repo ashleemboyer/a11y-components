@@ -4,15 +4,23 @@
 
 ## Install
 
+**With `npm`**
+
 ```bash
-npm i a11y-components
+npm install a11y-components
+```
+
+**With `yarn`**
+
+```bash
+yarn add a11y-components
 ```
 
 ## Usage
 
 ```jsx
 import React from 'react';
-import { Button } from 'a11y-component';
+import { Button } from 'a11y-components';
 
 const Example = () => (
   <Button

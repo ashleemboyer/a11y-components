@@ -24,9 +24,11 @@ const Listbox = forwardRef((props, ref) => {
     label,
     labelClassName,
     listItemClassName,
-    options,
+    onChange = () => null,
+    options = [],
     style,
     unorderedListClassName,
+    value,
   } = props;
   const passableProps = {
     ...props,
@@ -59,8 +61,8 @@ const Listbox = forwardRef((props, ref) => {
 
   const selectedOption =
     options.find((option) => {
-      if (props.value) {
-        return option.id === props.value;
+      if (value) {
+        return option.id === value;
       } else {
         return option.id === options[indexOfSelectedOption].id;
       }
@@ -68,7 +70,7 @@ const Listbox = forwardRef((props, ref) => {
 
   const setOption = (indexOfOption) => {
     setIndexOfSelectedOption(indexOfOption);
-    props.onChange(options[indexOfOption].id);
+    onChange(options[indexOfOption].id);
   };
 
   const focusPreviousOption = () => {

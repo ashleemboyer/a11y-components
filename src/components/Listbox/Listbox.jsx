@@ -21,15 +21,15 @@ const Listbox = forwardRef((props, ref) => {
     ref,
   };
 
-  delete passableProps.label;
-  delete passableProps.onChange;
-  delete passableProps.options;
-  delete passableProps.value;
   delete passableProps.buttonClassName;
   delete passableProps.containerClassName;
+  delete passableProps.label;
   delete passableProps.labelClassName;
   delete passableProps.listItemClassName;
+  delete passableProps.onChange;
+  delete passableProps.options;
   delete passableProps.unorderedListClassName;
+  delete passableProps.value;
 
   printWarnings(props);
 

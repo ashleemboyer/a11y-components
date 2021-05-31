@@ -16,11 +16,11 @@ const Input = forwardRef((props, ref) => {
     ref,
   };
 
-  delete passableProps.label;
-  delete passableProps.style;
   delete passableProps.containerClassName;
-  delete passableProps.labelClassName;
   delete passableProps.inputClassName;
+  delete passableProps.label;
+  delete passableProps.labelClassName;
+  delete passableProps.style;
 
   printWarnings(props);
 

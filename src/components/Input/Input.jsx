@@ -1,5 +1,15 @@
 import React, { forwardRef } from 'react';
 
+const printWarnings = (componentProps) => {
+  const { className } = componentProps;
+
+  if (className) {
+    console.warn(
+      'The className property is ignored. Please use containerClassName, labelClassName, or inputClassName instead.'
+    );
+  }
+};
+
 const Input = forwardRef((props, ref) => {
   const passableProps = {
     ...props,
@@ -8,11 +18,21 @@ const Input = forwardRef((props, ref) => {
 
   delete passableProps.label;
   delete passableProps.style;
+  delete passableProps.containerClassName;
+  delete passableProps.labelClassName;
+  delete passableProps.inputClassName;
 
+  printWarnings(props);
+
+  const { containerClassName, inputClassName, labelClassName } = props;
   return (
-    <div style={props.style}>
-      {props.label && <label htmlFor={props.id}>{props.label}</label>}
-      <input {...passableProps} />
+    <div className={containerClassName} style={props.style}>
+      {props.label && (
+        <label className={labelClassName} htmlFor={props.id}>
+          {props.label}
+        </label>
+      )}
+      <input {...passableProps} className={inputClassName} />
     </div>
   );
 });

@@ -1,18 +1,49 @@
-import React, { forwardRef, useState, useEffect } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 
 const ARROW_UP = 38;
 const ARROW_DOWN = 40;
 const ESCAPE = 27;
 const ENTER = 13;
 
+const printWarnings = (componentProps) => {
+  const { className } = componentProps;
+
+  if (className) {
+    console.warn(
+      'The className property is ignored. Please use buttonClassName, containerClassName, labelClassName, listItemClassName, or unorderedListClassName instead.'
+    );
+  }
+};
+
 const Listbox = forwardRef((props, ref) => {
+  printWarnings(props);
+
+  const {
+    buttonClassName,
+    containerClassName,
+    label,
+    labelClassName,
+    listItemClassName,
+    onChange = () => null,
+    options = [],
+    style,
+    unorderedListClassName,
+    value,
+  } = props;
   const passableProps = {
     ...props,
     ref,
   };
+
+  delete passableProps.buttonClassName;
+  delete passableProps.containerClassName;
   delete passableProps.label;
+  delete passableProps.labelClassName;
+  delete passableProps.listItemClassName;
   delete passableProps.onChange;
   delete passableProps.options;
+  delete passableProps.style;
+  delete passableProps.unorderedListClassName;
   delete passableProps.value;
 
   const buttonRef = React.createRef();
@@ -22,9 +53,6 @@ const Listbox = forwardRef((props, ref) => {
   const [indexOfSelectedOption, setIndexOfSelectedOption] = useState(0);
   const [listboxWasBlurred, setListboxWasBlurred] = useState(false);
 
-  const label = props && props.label ? props.label : '';
-  const options = props && props.options ? props.options : [];
-
   useEffect(() => {
     if (isOpen && listboxRef.current) {
       listboxRef.current.focus();
@@ -33,8 +61,8 @@ const Listbox = forwardRef((props, ref) => {
 
   const selectedOption =
     options.find((option) => {
-      if (props.value) {
-        return option.id === props.value;
+      if (value) {
+        return option.id === value;
       } else {
         return option.id === options[indexOfSelectedOption].id;
       }
@@ -42,7 +70,7 @@ const Listbox = forwardRef((props, ref) => {
 
   const setOption = (indexOfOption) => {
     setIndexOfSelectedOption(indexOfOption);
-    props.onChange(options[indexOfOption].id);
+    onChange(options[indexOfOption].id);
   };
 
   const focusPreviousOption = () => {
@@ -91,13 +119,17 @@ const Listbox = forwardRef((props, ref) => {
   const listboxLabel = `listboxLabel-${new Date().getTime()})`;
 
   return (
-    <div>
-      <label id={listboxLabel}>{label}</label>
+    <div className={containerClassName} style={style}>
+      {label && (
+        <label className={labelClassName} id={listboxLabel}>
+          {label}
+        </label>
+      )}
       <button
-        ref={buttonRef}
-        aria-labelledby={listboxLabel}
-        aria-haspopup="listbox"
         aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-labelledby={listboxLabel}
+        className={buttonClassName}
         onClick={() => {
           // Don't reopen the listbox if it was blurred then clicked
           if (listboxWasBlurred) {
@@ -108,31 +140,34 @@ const Listbox = forwardRef((props, ref) => {
           setIsOpen(!isOpen);
         }}
         onKeyDown={handleButtonKeyDown}
+        ref={buttonRef}
       >
         {selectedOption.id ? selectedOption.label : 'Choose'}
       </button>
       {isOpen && (
         <ul
-          ref={listboxRef}
-          tabIndex={isOpen ? '0' : '-1'}
-          role="listbox"
           aria-activedescendant={selectedOption.id}
-          onKeyDown={handleListboxKeyDown}
+          className={unorderedListClassName}
           onBlur={() => {
             setListboxWasBlurred(true);
             setIsOpen(false);
           }}
+          onKeyDown={handleListboxKeyDown}
+          ref={listboxRef}
+          role="listbox"
+          tabIndex={isOpen ? '0' : '-1'}
         >
           {options.map((option, index) => (
             <li
+              aria-selected={option.id === selectedOption.id}
+              className={listItemClassName}
               id={option.id}
               key={option.id}
-              role="option"
-              aria-selected={option.id === selectedOption.id}
               onClick={() => {
                 setOption(index);
                 setIsOpen(false);
               }}
+              role="option"
             >
               {option.label}
             </li>

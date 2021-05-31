@@ -9,26 +9,21 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'Label',
+      defaultValue: 'Who is your favorite Golden Girl?',
     },
     options: {
       control: {
         type: 'object',
       },
       defaultValue: [
-        { label: 'Option 1', id: 'option-1' },
-        { label: 'Option 2', id: 'option-2' },
-        { label: 'Option 3', id: 'option-3' },
+        { label: 'Blanche Devereaux', id: 'blanche-devereaux' },
+        { label: 'Rose Nylynd', id: 'rose-nylynd' },
+        { label: 'Sophia Petrillo', id: 'sophia-petrillo' },
+        { label: 'Dorothy Zbornak', id: 'dorothy-zbornak' },
       ],
     },
     onChange: {
       action: 'changed',
-    },
-    value: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: 'option-2',
     },
   },
 };

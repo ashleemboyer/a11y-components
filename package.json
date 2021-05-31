@@ -21,12 +21,24 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "compile": "yarn clean && cross-env NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore test.js,stories.js"
+    "compile": "yarn clean && cross-env NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore test.js,stories.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
     ]
   },
   "browserslist": {
@@ -42,6 +54,12 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/node-logger": "^6.2.9",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.2.9",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "react": "^17.0.2",

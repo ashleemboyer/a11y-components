@@ -11,6 +11,8 @@ const printWarnings = (componentProps) => {
 };
 
 const Input = forwardRef((props, ref) => {
+  printWarnings(props);
+
   const passableProps = {
     ...props,
     ref,
@@ -22,14 +24,12 @@ const Input = forwardRef((props, ref) => {
   delete passableProps.labelClassName;
   delete passableProps.style;
 
-  printWarnings(props);
-
-  const { containerClassName, inputClassName, labelClassName } = props;
+  const { containerClassName, id, inputClassName, label, labelClassName, style } = props;
   return (
-    <div className={containerClassName} style={props.style}>
-      {props.label && (
-        <label className={labelClassName} htmlFor={props.id}>
-          {props.label}
+    <div className={containerClassName} style={style}>
+      {label && (
+        <label className={labelClassName} htmlFor={id}>
+          {label}
         </label>
       )}
       <input {...passableProps} className={inputClassName} />

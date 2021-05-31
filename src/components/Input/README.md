@@ -1,6 +1,8 @@
 # Input
 
-An `Input` consists of a `<label>` (if given) and an `<input>` wrapped in a `<div>`. All properties passed into the component are passed to the `<input>` unless otherwised noted in the Properties table below.
+An `Input` consists of a `<label>` (if given) and an `<input>` wrapped in a `<div>`. All properties
+passed into the component are passed to the `<input>` unless otherwised noted in the Properties
+table below.
 
 ## Properties
 
@@ -12,11 +14,16 @@ An `Input` consists of a `<label>` (if given) and an `<input>` wrapped in a `<di
 
 ## Accessibility
 
-If a `label` is given, it is important to also give an `id` to associate the `<label>` and the `<input>`. Without an `id`, the `<input>` is presented by a screenreader only as "edit text" which is uniformative to the screenreader user. When the `id` and `label` are both provided, the `<input>` is presented as "<your label text> edit text". So, if the `label` given is "First name", then the `<input>` will be presented as "First name edit text".
+If a `label` is given, it is important to also give an `id` to associate the `<label>` and the
+`<input>`. Without an `id`, the `<input>` is presented by a screenreader only as "edit text" which
+is uninformative to the screenreader user. When the `id` and `label` are both provided, the
+`<input>` is presented as "<your label text> edit text". So, if the `label` given is "First name",
+then the `<input>` will be presented as "First name edit text".
 
 ## Usage examples
 
-This is not an exhaustive list. These examples are to show how to use the properties described above.
+This is not an exhaustive list. These examples are to show how to use the properties described
+above.
 
 ### With the `id` and `label` properties
 

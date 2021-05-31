@@ -29,3 +29,13 @@ export default {
 };
 
 export const Basic = (props) => <Listbox {...props} />;
+
+export const Many = (props) => (
+  <>
+    <Listbox {...props} />
+    <Listbox {...props} />
+    <Listbox {...props} />
+    <Listbox {...props} />
+    <Listbox {...props} />
+  </>
+);
